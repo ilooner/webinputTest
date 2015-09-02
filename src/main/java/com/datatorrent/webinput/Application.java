@@ -19,6 +19,7 @@ public class Application implements StreamingApplication
   public void populateDAG(DAG dag, Configuration conf)
   {
     PubSubWebSocketAppDataQuery pubSub = dag.addOperator("webSocketAppDataQuery", PubSubWebSocketAppDataQuery.class);
+    pubSub.setTopic("TestBugTopic");
     ConsoleOutputOperator cons = dag.addOperator("console", new ConsoleOutputOperator());
     dag.addStream("randomData", pubSub.outputPort, cons.input);
   }
